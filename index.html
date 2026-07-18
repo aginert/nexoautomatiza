@@ -29,7 +29,7 @@
     --texto:#4a4f57;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
   body{font-family:'Inter',sans-serif;color:var(--tinta);background:var(--crema);line-height:1.6;-webkit-font-smoothing:antialiased}
   .display{font-family:'Space Grotesk',sans-serif}
   .wrap{max-width:1140px;margin:0 auto;padding:0 32px}
@@ -168,10 +168,10 @@
   /* ===== franja de logos (se conecta con...) ===== */
   .conecta{background:#fff;padding:52px 0;border-top:1px solid var(--crema-osc);border-bottom:1px solid var(--crema-osc);overflow:hidden}
   .conecta .lead{text-align:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-weight:500;margin-bottom:30px}
-  .marquee{display:flex;gap:14px;width:max-content;animation:scrollx 26s linear infinite}
+  .marquee{display:flex;width:max-content;animation:scrollx 26s linear infinite}
   .conecta:hover .marquee{animation-play-state:paused}
   @keyframes scrollx{to{transform:translateX(-50%)}}
-  .chip{display:inline-flex;align-items:center;gap:10px;background:var(--crema);border:1px solid var(--crema-osc);border-radius:100px;padding:11px 20px;font-family:'Space Grotesk';font-weight:500;font-size:15px;color:var(--tinta);white-space:nowrap}
+  .chip{display:inline-flex;align-items:center;gap:10px;margin-right:14px;background:var(--crema);border:1px solid var(--crema-osc);border-radius:100px;padding:11px 20px;font-family:'Space Grotesk';font-weight:500;font-size:15px;color:var(--tinta);white-space:nowrap}
   .chip img{width:20px;height:20px;display:block}
   .chip.txt{color:var(--turquesa-osc)}
 
