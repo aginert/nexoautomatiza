@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexo · Autorización para difundir el caso</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--tinta:#0E1A2B;--turquesa:#1FB6A6;--turquesa-osc:#128C80;--crema:#EFEBE2;--crema-osc:#E4DFD3;--gris:#8A8F96;--texto:#4a4f55;--ac:#8A6BC4}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;color:var(--tinta);background:var(--crema);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:0 22px}
+  a{color:var(--turquesa-osc);text-decoration:none}
+  .top{padding:20px 0}.top .logo{font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:-.03em}.top .logo .d{color:var(--turquesa)}
+  .hero{padding:14px 0 24px}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--ac);display:inline-flex;gap:8px;align-items:center}.eyebrow .sq{width:9px;height:9px;border-radius:3px;background:var(--ac)}
+  .hero h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(23px,4.5vw,30px);letter-spacing:-.02em;margin:12px 0 8px}
+  .hero p{color:var(--texto);font-weight:300;font-size:15px}
+  label.fld{display:block;margin:0 0 12px}
+  label.fld .lb{font-family:'Space Grotesk';font-weight:600;font-size:13px;color:var(--tinta);display:block;margin-bottom:5px}
+  input[type=text],input[type=email]{width:100%;border:1px solid var(--crema-osc);border-radius:10px;padding:11px 14px;font-family:'Inter';font-size:15px;color:var(--tinta);background:#fff}
+  input:focus{outline:none;border-color:var(--turquesa)}
+  h2{font-family:'Space Grotesk';font-weight:600;font-size:16px;margin:26px 0 10px}
+  .ck{background:#fff;border:1px solid var(--crema-osc);border-radius:10px;padding:12px 15px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:border-color .15s}
+  .ck:has(input:checked){border-color:var(--turquesa);box-shadow:0 1px 8px rgba(31,182,166,.1)}
+  .ck input{margin-top:3px;width:18px;height:18px;accent-color:var(--turquesa-osc);flex:none}
+  .ck .tx{font-size:14.5px;color:var(--texto);font-weight:300}.ck .tx b{color:var(--tinta);font-weight:600}
+  .cond{background:#fff;border:1px solid var(--crema-osc);border-left:3px solid var(--ac);border-radius:12px;padding:14px 18px;margin:8px 0 14px;font-size:13.5px;color:var(--texto);font-weight:300}
+  .cond b{color:var(--tinta)}
+  .actions{display:flex;gap:12px;margin:20px 0 8px;flex-wrap:wrap}
+  .btn{flex:1;min-width:180px;border:none;border-radius:12px;padding:15px 18px;font-family:'Space Grotesk';font-weight:600;font-size:15.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none}
+  .btn.wa{background:#25D366;color:#fff}
+  .btn.mail{background:#fff;color:var(--tinta);border:1px solid var(--crema-osc)}
+  .btn svg{width:19px;height:19px;fill:currentColor}
+  .err{background:#fff;border:1px solid #e6b3b3;border-left:3px solid #c0392b;border-radius:10px;padding:11px 15px;color:#8a2b2b;font-size:14px;display:none;margin-top:6px}
+  .seal{text-align:center;margin:34px 0 10px}
+  .seal a{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--crema-osc);border-radius:100px;padding:8px 16px;box-shadow:0 2px 10px rgba(14,26,43,.04)}
+  .seal .pre{font-size:12px;color:var(--gris)}.seal .mk{font-family:'Space Grotesk';font-weight:700;font-size:16px;color:var(--tinta)}.seal .mk .d{color:var(--turquesa)}
+  .seal .tx{font-size:12px;color:var(--gris);border-left:1px solid var(--crema-osc);padding-left:10px}.seal .u{text-transform:uppercase;letter-spacing:.06em;font-size:11px;color:var(--turquesa-osc)}
+  .foot{padding:14px 0 50px;color:var(--gris);font-size:12px;font-weight:300;text-align:center}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><div class="logo">Nexo<span class="d">.</span></div></div></div>
+
+<div class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="sq"></span>Autorización</div>
+  <h1>Autorización para difundir tu caso</h1>
+  <p>Con esto autorizas a Nexo a contar tu caso. Marca solo lo que te encaje, firma y envía — 30 segundos. Nada se publica sin que lo veas antes.</p>
+</div></div>
+
+<div class="wrap">
+  <form id="form">
+    <label class="fld"><span class="lb">Empresa y CIF</span><input type="text" id="empresa" placeholder="Nombre de la empresa · CIF"></label>
+    <label class="fld"><span class="lb">Tu nombre y cargo</span><input type="text" id="cargo" placeholder="Nombre · cargo"></label>
+    <label class="fld"><span class="lb">Email de contacto</span><input type="email" id="email" placeholder="tu@email.com"></label>
+    <label class="fld"><span class="lb">Proyecto / caso</span><input type="text" id="proyecto" placeholder="Qué se montó, en una línea"></label>
+
+    <h2>Qué autorizas</h2>
+    <label class="ck"><input type="checkbox" data-tx="Contar el caso de forma anónima"><span class="tx"><b>Contar el caso de forma anónima</b> — sin nombrar tu empresa.</span></label>
+    <label class="ck"><input type="checkbox" data-tx="Usar el nombre y/o logo de la empresa"><span class="tx"><b>Usar el nombre y/o el logo</b> de la empresa.</span></label>
+    <label class="ck"><input type="checkbox" data-tx="Publicar un testimonio"><span class="tx"><b>Publicar un testimonio</b> (una o dos frases sobre el resultado).</span></label>
+    <label class="ck"><input type="checkbox" data-tx="Mostrar capturas o imágenes del proyecto"><span class="tx"><b>Mostrar capturas o imágenes</b> del proyecto, sin datos sensibles.</span></label>
+    <label class="ck"><input type="checkbox" data-tx="Difundir en web, redes, propuestas y portfolio"><span class="tx"><b>Difundirlo</b> en web, redes, propuestas comerciales y portfolio.</span></label>
+
+    <h2>Condiciones</h2>
+    <div class="cond"><b>Revisión previa</b> (ves el texto antes de publicar) · <b>Revocable</b> cuando quieras por escrito · <b>Sin coste</b> para ninguna parte · Datos tratados solo para gestionar el permiso (RGPD, responsable: Nexo).</div>
+    <label class="ck"><input type="checkbox" id="acepta"><span class="tx">He leído y <b>acepto las condiciones</b>. <span style="color:var(--ac)">(obligatorio)</span></span></label>
+
+    <label class="fld" style="margin-top:14px"><span class="lb">Firma — escribe tu nombre completo</span><input type="text" id="firma" placeholder="Tu nombre y apellidos"></label>
+
+    <div class="actions">
+      <button type="button" class="btn wa" onclick="enviar('wa')"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.3.1.7-.1 1.1Z"/></svg>Firmar por WhatsApp</button>
+      <button type="button" class="btn mail" onclick="enviar('mail')"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z"/></svg>Firmar por email</button>
+    </div>
+    <div class="err" id="err"></div>
+  </form>
+
+  <div class="seal"><a href="https://nexoautomatiza.com" target="_blank" rel="noopener"><span class="pre">Un sistema de</span><span class="mk">Nexo<span class="d">.</span></span><span class="tx">automatización con IA</span><span class="u">nexoautomatiza.com&nbsp;↗</span></a></div>
+  <div class="foot">Nexo · Autorización para difundir el caso · No es asesoramiento legal.</div>
+</div>
+
+<script>
+  // ── Config: ajusta si cambian ──
+  var WA_NUM = "34607672814";                 // WhatsApp de Nexo (sin + ni espacios)
+  var MAIL   = "hola@nexoautomatiza.com";     // correo de Nexo
+
+  function val(id){ return (document.getElementById(id).value || "").trim(); }
+
+  function construirTexto(){
+    var marcados = [];
+    document.querySelectorAll('.ck input[data-tx]').forEach(function(c){ if(c.checked) marcados.push("• " + c.getAttribute('data-tx')); });
+    var d = new Date();
+    var fecha = ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear()+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+    var t = "AUTORIZACIÓN DE USO DE CASO — Nexo\n";
+    t += "―――――――――――――――\n";
+    t += "Empresa: " + (val('empresa')||"—") + "\n";
+    t += "Firmante: " + (val('cargo')||"—") + "\n";
+    t += "Email: " + (val('email')||"—") + "\n";
+    t += "Proyecto: " + (val('proyecto')||"—") + "\n\n";
+    t += "AUTORIZA:\n" + (marcados.length? marcados.join("\n") : "(nada marcado)") + "\n\n";
+    t += "Acepta las condiciones (revisión previa · revocable · sin coste · RGPD): SÍ\n";
+    t += "Firma: " + val('firma') + "\n";
+    t += "Fecha y hora: " + fecha;
+    return t;
+  }
+
+  function enviar(via){
+    var err = document.getElementById('err');
+    if(!document.getElementById('acepta').checked){ err.textContent = "Marca la casilla de aceptar las condiciones para poder firmar."; err.style.display='block'; return; }
+    if(!val('firma')){ err.textContent = "Escribe tu nombre completo en la firma."; err.style.display='block'; return; }
+    err.style.display='none';
+    var texto = construirTexto();
+    if(via==='wa'){
+      window.open("https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(texto), "_blank");
+    } else {
+      window.location.href = "mailto:"+MAIL+"?subject="+encodeURIComponent("Autorización de uso de caso — "+(val('empresa')||val('firma')))+"&body="+encodeURIComponent(texto);
+    }
+  }
+</script>
+</body>
+</html>
