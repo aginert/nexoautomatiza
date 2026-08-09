@@ -31,6 +31,8 @@
   .sec.first{margin-top:0}
   .sec.morada::before{background:var(--ac)}
 
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  @media(max-width:520px){.grid2{grid-template-columns:1fr}}
   label.fld{display:block;margin:0 0 14px}
   label.fld .lb{font-family:'Space Grotesk';font-weight:600;font-size:13px;color:var(--tinta);display:block;margin-bottom:6px}
   input[type=text],input[type=email]{width:100%;border:1px solid var(--crema-osc);border-radius:11px;padding:12px 15px;font-family:'Inter';font-size:15px;color:var(--tinta);background:var(--fondo);transition:border-color .15s,background .15s}
@@ -76,10 +78,12 @@
   <div class="sheet">
   <form id="form">
     <div class="sec first">Tus datos</div>
-    <label class="fld"><span class="lb">Empresa y CIF</span><input type="text" id="empresa" placeholder="Nombre de la empresa · CIF"></label>
-    <label class="fld"><span class="lb">Tu nombre y cargo</span><input type="text" id="cargo" placeholder="Nombre · cargo"></label>
-    <label class="fld"><span class="lb">Email de contacto</span><input type="email" id="email" placeholder="tu@email.com"></label>
-    <label class="fld"><span class="lb">Proyecto / caso</span><input type="text" id="proyecto" placeholder="Qué se montó, en una línea"></label>
+    <div class="grid2">
+      <label class="fld"><span class="lb">Empresa y CIF</span><input type="text" id="empresa" placeholder="Nombre de la empresa · CIF"></label>
+      <label class="fld"><span class="lb">Tu nombre y cargo</span><input type="text" id="cargo" placeholder="Nombre · cargo"></label>
+      <label class="fld"><span class="lb">Email de contacto</span><input type="email" id="email" placeholder="tu@email.com"></label>
+      <label class="fld"><span class="lb">Proyecto / caso</span><input type="text" id="proyecto" placeholder="Qué se montó, en una línea"></label>
+    </div>
 
     <div class="sec">Qué autorizas</div>
     <label class="ck"><input type="checkbox" data-tx="Contar el caso de forma anónima"><span class="tx"><b>Contar el caso de forma anónima</b> — sin nombrar tu empresa.</span></label>
