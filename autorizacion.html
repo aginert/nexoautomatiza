@@ -34,6 +34,7 @@
   .btn{flex:1;min-width:180px;border:none;border-radius:12px;padding:15px 18px;font-family:'Space Grotesk';font-weight:600;font-size:15.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none}
   .btn.wa{background:#25D366;color:#fff}
   .btn.mail{background:#fff;color:var(--tinta);border:1px solid var(--crema-osc)}
+  .btn.pdf{background:var(--tinta);color:#fff}
   .btn svg{width:19px;height:19px;fill:currentColor}
   .err{background:#fff;border:1px solid #e6b3b3;border-left:3px solid #c0392b;border-radius:10px;padding:11px 15px;color:#8a2b2b;font-size:14px;display:none;margin-top:6px}
   .seal{text-align:center;margin:34px 0 10px}
@@ -76,6 +77,10 @@
       <button type="button" class="btn wa" onclick="enviar('wa')"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.3.1.7-.1 1.1Z"/></svg>Firmar por WhatsApp</button>
       <button type="button" class="btn mail" onclick="enviar('mail')"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z"/></svg>Firmar por email</button>
     </div>
+    <div class="actions" style="margin-top:0">
+      <button type="button" class="btn pdf" onclick="descargarPDF()"><svg viewBox="0 0 24 24"><path d="M12 3a1 1 0 0 1 1 1v8.6l2.3-2.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4l2.3 2.3V4a1 1 0 0 1 1-1ZM5 18a1 1 0 0 1 1 1h12a1 1 0 1 1 0 2H6a2 2 0 0 1-2-2 1 1 0 0 1 1-1Z"/></svg>Descargar en PDF</button>
+    </div>
+    <p style="font-size:12.5px;color:var(--gris);font-weight:300;margin:2px 0 0">El PDF genera el documento completo para firmarlo y enviarlo en el formato que prefieras.</p>
     <div class="err" id="err"></div>
   </form>
 
@@ -89,36 +94,95 @@
   var MAIL   = "hola@nexoautomatiza.com";     // correo de Nexo
 
   function val(id){ return (document.getElementById(id).value || "").trim(); }
+  function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
-  function construirTexto(){
+  function datos(){
     var marcados = [];
-    document.querySelectorAll('.ck input[data-tx]').forEach(function(c){ if(c.checked) marcados.push("• " + c.getAttribute('data-tx')); });
+    document.querySelectorAll('.ck input[data-tx]').forEach(function(c){ if(c.checked) marcados.push(c.getAttribute('data-tx')); });
     var d = new Date();
-    var fecha = ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear()+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
-    var t = "AUTORIZACIÓN DE USO DE CASO — Nexo\n";
-    t += "―――――――――――――――\n";
-    t += "Empresa: " + (val('empresa')||"—") + "\n";
-    t += "Firmante: " + (val('cargo')||"—") + "\n";
-    t += "Email: " + (val('email')||"—") + "\n";
-    t += "Proyecto: " + (val('proyecto')||"—") + "\n\n";
-    t += "AUTORIZA:\n" + (marcados.length? marcados.join("\n") : "(nada marcado)") + "\n\n";
-    t += "Acepta las condiciones (revisión previa · revocable · sin coste · RGPD): SÍ\n";
-    t += "Firma: " + val('firma') + "\n";
-    t += "Fecha y hora: " + fecha;
+    var fecha = ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear();
+    var hora = ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);
+    return {
+      empresa: val('empresa')||"—", cargo: val('cargo')||"—", email: val('email')||"—",
+      proyecto: val('proyecto')||"—", firma: val('firma'), marcados: marcados,
+      fecha: fecha, hora: hora
+    };
+  }
+
+  // Texto oficial y ampliado — se usa en WhatsApp y email
+  function textoOficial(){
+    var x = datos();
+    var t = "AUTORIZACIÓN PARA LA DIFUSIÓN DE CASO DE CLIENTE\n";
+    t += "═══════════════════════════════\n\n";
+    t += "En "+x.fecha+", D./Dª "+(x.firma||"—")+", en calidad de \""+x.cargo+"\" y en representación de "+x.empresa+", con email de contacto "+x.email+", AUTORIZA de forma libre e informada a NEXO (nexoautomatiza.com) a difundir el caso correspondiente al proyecto \""+x.proyecto+"\", en los siguientes términos.\n\n";
+    t += "AUTORIZA:\n";
+    t += (x.marcados.length ? x.marcados.map(function(m){return "  • "+m;}).join("\n") : "  (no se ha marcado ninguna opción)") + "\n\n";
+    t += "CONDICIONES ACEPTADAS:\n";
+    t += "  – Revisión previa del contenido antes de su publicación.\n";
+    t += "  – Autorización revocable en cualquier momento mediante comunicación por escrito.\n";
+    t += "  – Sin coste ni contraprestación para ninguna de las partes.\n";
+    t += "  – Sin publicar cifras exactas ni datos confidenciales sin acuerdo específico.\n";
+    t += "  – Tratamiento de datos conforme al RGPD, con la única finalidad de gestionar este permiso. Responsable: Nexo · hola@nexoautomatiza.com.\n\n";
+    t += "FIRMA (firma electrónica simple): "+(x.firma||"—")+"\n";
+    t += "FECHA Y HORA: "+x.fecha+" "+x.hora+"\n\n";
+    t += "Un sistema de Nexo · automatización con IA · nexoautomatiza.com";
     return t;
   }
 
-  function enviar(via){
+  function validar(){
     var err = document.getElementById('err');
-    if(!document.getElementById('acepta').checked){ err.textContent = "Marca la casilla de aceptar las condiciones para poder firmar."; err.style.display='block'; return; }
-    if(!val('firma')){ err.textContent = "Escribe tu nombre completo en la firma."; err.style.display='block'; return; }
-    err.style.display='none';
-    var texto = construirTexto();
+    if(!document.getElementById('acepta').checked){ err.textContent = "Marca la casilla de aceptar las condiciones para poder firmar."; err.style.display='block'; return false; }
+    if(!val('firma')){ err.textContent = "Escribe tu nombre completo en la firma."; err.style.display='block'; return false; }
+    err.style.display='none'; return true;
+  }
+
+  function enviar(via){
+    if(!validar()) return;
+    var texto = textoOficial();
     if(via==='wa'){
       window.open("https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(texto), "_blank");
     } else {
       window.location.href = "mailto:"+MAIL+"?subject="+encodeURIComponent("Autorización de uso de caso — "+(val('empresa')||val('firma')))+"&body="+encodeURIComponent(texto);
     }
+  }
+
+  // Documento oficial imprimible → el navegador permite "Guardar como PDF"
+  function descargarPDF(){
+    if(!validar()) return;
+    var x = datos();
+    var items = x.marcados.length ? x.marcados.map(function(m){return "<li>"+esc(m)+"</li>";}).join("") : "<li style='color:#8a2b2b'>No se ha marcado ninguna opción</li>";
+    var css = "body{font-family:Georgia,'Times New Roman',serif;color:#0E1A2B;max-width:720px;margin:40px auto;padding:0 40px;line-height:1.7}"
+      + "h1{font-size:20px;letter-spacing:.02em;border-bottom:2px solid #1FB6A6;padding-bottom:10px;margin-bottom:6px}"
+      + ".sub{color:#666;font-size:12px;margin-bottom:26px}"
+      + "p{font-size:14px;text-align:justify}"
+      + "h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#128C80;margin:22px 0 8px}"
+      + "ul{margin:0 0 6px 18px}li{font-size:14px;margin-bottom:5px}"
+      + ".firma{margin-top:34px;border-top:1px solid #ccc;padding-top:14px;font-size:14px}"
+      + ".firma b{display:inline-block;min-width:150px}"
+      + ".seal{margin-top:40px;text-align:center;font-family:Arial,sans-serif;font-size:12px;color:#666}"
+      + ".seal b{color:#0E1A2B}.linea{display:inline-block;border-bottom:1px solid #333;min-width:260px;margin-top:30px}"
+      + "@media print{body{margin:0}}";
+    var html = "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><title>Autorización de uso de caso</title><style>"+css+"</style></head><body>"
+      + "<h1>Autorización para la difusión de caso de cliente</h1>"
+      + "<div class='sub'>Documento generado en nexoautomatiza.com/autorizacion · "+x.fecha+" "+x.hora+"</div>"
+      + "<p>En <b>"+esc(x.fecha)+"</b>, D./Dª <b>"+esc(x.firma||"—")+"</b>, en calidad de <b>"+esc(x.cargo)+"</b> y en representación de <b>"+esc(x.empresa)+"</b>, con email de contacto <b>"+esc(x.email)+"</b>, autoriza de forma libre e informada a <b>Nexo</b> (nexoautomatiza.com) a difundir el caso correspondiente al proyecto <b>«"+esc(x.proyecto)+"»</b>, en los términos que siguen.</p>"
+      + "<h2>Qué se autoriza</h2><ul>"+items+"</ul>"
+      + "<h2>Condiciones aceptadas</h2><ul>"
+      + "<li>Revisión previa del contenido antes de su publicación.</li>"
+      + "<li>Autorización revocable en cualquier momento mediante comunicación por escrito.</li>"
+      + "<li>Sin coste ni contraprestación para ninguna de las partes.</li>"
+      + "<li>Sin publicar cifras exactas ni datos confidenciales sin acuerdo específico.</li>"
+      + "<li>Tratamiento de datos conforme al RGPD, con la única finalidad de gestionar este permiso. Responsable: Nexo · hola@nexoautomatiza.com.</li>"
+      + "</ul>"
+      + "<div class='firma'><p><b>Firma del cliente:</b> "+esc(x.firma||"")+"<br><span class='linea'></span></p>"
+      + "<p style='margin-top:10px'><b>Fecha y hora:</b> "+esc(x.fecha)+" "+esc(x.hora)+"</p>"
+      + "<p style='color:#666;font-size:12px'>Firma electrónica simple. Válida al remitirse desde una dirección/número identificable del firmante.</p></div>"
+      + "<div class='seal'>Un sistema de <b>Nexo.</b> · automatización con IA · nexoautomatiza.com</div>"
+      + "</body></html>";
+    var w = window.open("", "_blank");
+    if(!w){ alert("Permite las ventanas emergentes para descargar el PDF."); return; }
+    w.document.write(html); w.document.close();
+    w.focus(); setTimeout(function(){ w.print(); }, 350);
   }
 </script>
 </body>
