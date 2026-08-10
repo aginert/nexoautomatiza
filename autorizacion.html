@@ -86,12 +86,10 @@
     </div>
 
     <div class="sec">Qué autorizas</div>
-    <label class="ck"><input type="checkbox" data-tx="Contar el caso de forma anónima"><span class="tx"><b>Contar el caso de forma anónima</b> — sin nombrar tu empresa.</span></label>
-    <label class="ck"><input type="checkbox" data-tx="Usar el nombre y/o logo de la empresa"><span class="tx"><b>Usar el nombre y/o el logo</b> de la empresa.</span></label>
-    <label class="ck"><input type="checkbox" data-tx="Publicar un testimonio"><span class="tx"><b>Publicar un testimonio</b> (una o dos frases sobre el resultado).</span></label>
-    <label class="ck"><input type="checkbox" data-tx="Mostrar capturas o imágenes del proyecto"><span class="tx"><b>Mostrar capturas o imágenes</b> del proyecto, sin datos sensibles.</span></label>
-    <label class="ck"><input type="checkbox" data-tx="Difundir en web, redes, propuestas y portfolio"><span class="tx"><b>Difundirlo</b> en web, redes, propuestas comerciales y portfolio.</span></label>
-    <label class="ck"><input type="checkbox" data-tx="Firmar con el sello de Nexo los reportes y comunicaciones del proyecto"><span class="tx"><b>Firmar con el sello de Nexo</b> los reportes y comunicaciones de tu proyecto.</span></label>
+    <label class="ck"><input type="checkbox" class="optauth" data-tx="Contar tu caso (anónimo o con el nombre y logo de la empresa)"><span class="tx"><b>Contar tu caso</b> — de forma anónima o con el nombre y el logo de tu empresa.</span></label>
+    <label class="ck"><input type="checkbox" class="optauth" data-tx="Publicar testimonio, imágenes y resultados del proyecto"><span class="tx"><b>Publicar testimonio, imágenes y resultados</b> del proyecto (sin datos sensibles).</span></label>
+    <label class="ck"><input type="checkbox" class="optauth" data-tx="Difundirlo en los canales de Nexo y firmar los entregables con el sello de Nexo"><span class="tx"><b>Difundirlo y firmarlo con la marca Nexo</b> — web, redes, propuestas y portfolio, y el sello de Nexo en los entregables.</span></label>
+    <label class="ck" style="border-style:dashed"><input type="checkbox" id="todas"><span class="tx"><b>Todas las anteriores</b> — autorizo todo lo de arriba.</span></label>
 
     <div class="sec morada">Condiciones</div>
     <div class="cond">
@@ -220,6 +218,21 @@
     w.document.write(html); w.document.close();
     w.focus(); setTimeout(function(){ w.print(); }, 350);
   }
+
+  // "Todas las anteriores" marca/desmarca las tres opciones
+  (function(){
+    var todas = document.getElementById('todas');
+    var opts = document.querySelectorAll('.optauth');
+    if(!todas) return;
+    todas.addEventListener('change', function(){
+      opts.forEach(function(o){ o.checked = todas.checked; });
+    });
+    opts.forEach(function(o){
+      o.addEventListener('change', function(){
+        todas.checked = Array.prototype.every.call(opts, function(x){ return x.checked; });
+      });
+    });
+  })();
 </script>
 </body>
 </html>
