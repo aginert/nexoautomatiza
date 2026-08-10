@@ -85,7 +85,8 @@
   @media(max-width:780px){.problema .grid{grid-template-columns:1fr;gap:30px}}
 
   /* pilares */
-  .pilares .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pilares .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:980px){.pilares .grid{grid-template-columns:1fr 1fr}}
   .pilar{background:#fff;border:1px solid var(--crema-osc);border-radius:16px;padding:34px 28px}
   .pilar .ico{width:44px;height:44px;border-radius:11px;background:var(--crema);display:flex;align-items:center;justify-content:center;font-size:22px}
   .pilar h3{font-family:'Space Grotesk';font-weight:600;font-size:21px;margin:18px 0 8px}
@@ -93,7 +94,8 @@
   @media(max-width:780px){.pilares .grid{grid-template-columns:1fr}}
 
   /* servicios */
-  .servicios .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .servicios .cards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  @media(max-width:1080px){.servicios .cards{grid-template-columns:repeat(3,1fr)}}
   .servicios .card{background:#fff;border:1px solid var(--crema-osc);border-radius:16px;padding:30px 24px;min-height:230px;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}
   .servicios .card:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(14,26,43,.10);border-color:var(--turquesa);background:#F1FAF8}
   .servicios .card .no{font-family:'Space Grotesk';font-weight:600;font-size:13px;color:var(--turquesa-osc)}
@@ -367,6 +369,7 @@
       <div class="pilar reveal"><div class="ico">🔄</div><h3>Autonomía</h3><p>Los procesos se sostienen y se mantienen solos, sin que tengas que estar encima.</p></div>
       <div class="pilar reveal"><div class="ico">⚡</div><h3>Eficiencia</h3><p>Menos tiempo perdido en tareas repetitivas. Respuestas y documentos al instante.</p></div>
       <div class="pilar reveal"><div class="ico">🔒</div><h3>Control</h3><p>Tú decides y ves qué hace la IA y qué no. Te enseñamos cómo funciona: mantienes el mando, no dependes de una caja negra.</p></div>
+      <div class="pilar reveal"><div class="ico">🧠</div><h3>Conocimiento</h3><p>Una sola fuente de verdad: procesos, productos y know-how ordenados y que responden con IA. El saber deja de vivir solo en la cabeza de la gente.</p></div>
     </div>
   </div>
 </section>
@@ -403,6 +406,12 @@
         <h3>Formación</h3>
         <p>Te enseñamos a ti y a tu equipo a manejarlo y entenderlo. El control se queda contigo, no en una caja negra.</p>
         <span class="price">por sesión</span>
+      </div>
+      <div class="card reveal">
+        <span class="no">05</span>
+        <h3>Memoria del negocio</h3>
+        <p>Reunimos procesos, productos, clientes y know-how en una única fuente con IA que responde con sus fuentes. El conocimiento deja de vivir solo en la cabeza de la gente.</p>
+        <span class="price">proyecto cerrado</span>
       </div>
     </div>
   </div>
