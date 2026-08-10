@@ -46,7 +46,14 @@
 
   .cond{background:var(--fondo);border:1px solid var(--crema-osc);border-left:3px solid var(--ac);border-radius:12px;padding:16px 20px;font-size:13.5px;color:var(--texto);font-weight:300;line-height:1.6}
   .cond b{color:var(--tinta)}
-  .cond p+p{border-top:1px solid var(--crema-osc);padding-top:9px}
+  .cond .more{margin-top:10px;border-top:1px solid var(--crema-osc);padding-top:9px}
+  .cond summary{cursor:pointer;font-family:'Space Grotesk';font-weight:600;font-size:12.5px;letter-spacing:.02em;color:var(--turquesa-osc);list-style:none;display:inline-flex;align-items:center;gap:6px}
+  .cond summary::-webkit-details-marker{display:none}
+  .cond summary::before{content:"▸";display:inline-block;transition:transform .15s}
+  .cond details[open] summary::before{transform:rotate(90deg)}
+  .cond .more-body{margin-top:11px}
+  .cond .more-body p{margin:0 0 8px}
+  .cond .more-body p:last-child{margin:0}
 
   .actions{display:flex;gap:12px;margin:22px 0 0;flex-wrap:wrap}
   .btn{flex:1;min-width:170px;border:none;border-radius:13px;padding:15px 18px;font-family:'Space Grotesk';font-weight:600;font-size:15.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;transition:filter .15s,transform .15s}
@@ -93,13 +100,19 @@
 
     <div class="sec morada">Condiciones</div>
     <div class="cond">
-      <p style="margin:0 0 9px"><b>Nada confidencial sin tu OK:</b> no se publican cifras exactas, datos personales de terceros ni know-how secreto sin tu acuerdo específico por escrito.</p>
-      <p style="margin:0 0 9px"><b>Revisión previa:</b> puedes ver el texto/creatividad antes de que se publique.</p>
-      <p style="margin:0 0 9px"><b>Vigencia:</b> el permiso sigue en vigor hasta que lo revoques.</p>
-      <p style="margin:0 0 9px"><b>Revocable:</b> puedes retirarlo cuando quieras avisando por escrito; Nexo dejará de usarlo online en un plazo razonable. No obliga a retirar materiales ya impresos o tiradas ya distribuidas.</p>
-      <p style="margin:0 0 9px"><b>Ámbito:</b> medios digitales e impresos de Nexo, sin límite territorial (internet). Nexo no cede el caso a terceros ajenos a su actividad comercial.</p>
-      <p style="margin:0 0 9px"><b>Sin coste ni contraprestación</b> por ninguna de las partes.</p>
-      <p style="margin:0"><b>Protección de datos:</b> los datos se tratan solo para gestionar el permiso, conforme al RGPD. Responsable: Nexo · hola@nexoautomatiza.com.</p>
+      <p style="margin:0"><b>En corto:</b> revisas antes de publicar · lo revocas cuando quieras · sin coste · nada confidencial sin tu OK · datos solo para gestionar el permiso (RGPD).</p>
+      <details class="more">
+        <summary>Ver condiciones completas</summary>
+        <div class="more-body">
+          <p><b>Nada confidencial sin tu OK:</b> no se publican cifras exactas, datos personales de terceros ni know-how secreto sin tu acuerdo específico por escrito.</p>
+          <p><b>Revisión previa:</b> puedes ver el texto/creatividad antes de que se publique.</p>
+          <p><b>Vigencia:</b> el permiso sigue en vigor hasta que lo revoques.</p>
+          <p><b>Revocable:</b> puedes retirarlo cuando quieras avisando por escrito; Nexo dejará de usarlo online en un plazo razonable. No obliga a retirar materiales ya impresos o tiradas ya distribuidas.</p>
+          <p><b>Ámbito:</b> medios digitales e impresos de Nexo, sin límite territorial (internet). Nexo no cede el caso a terceros ajenos a su actividad comercial.</p>
+          <p><b>Sin coste ni contraprestación</b> por ninguna de las partes.</p>
+          <p><b>Protección de datos:</b> los datos se tratan solo para gestionar el permiso, conforme al RGPD. Responsable: Nexo · hola@nexoautomatiza.com.</p>
+        </div>
+      </details>
     </div>
     <label class="ck" style="margin-top:12px"><input type="checkbox" id="acepta"><span class="tx">He leído y <b>acepto las condiciones</b>. <span style="color:var(--ac)">(obligatorio)</span></span></label>
 
