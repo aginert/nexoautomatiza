@@ -102,6 +102,36 @@
   .servicios .card h3{font-family:'Space Grotesk';font-weight:600;font-size:20px;margin:16px 0 10px}
   .servicios .card p{font-size:14px;color:var(--texto);font-weight:300;flex:1}
   .servicios .card .price{font-family:'Space Grotesk';font-weight:500;font-size:13px;margin-top:16px;color:var(--tinta)}
+  /* dos patas (visual) */
+  .dospatas .duo{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:820px){.dospatas .duo{grid-template-columns:1fr}}
+  .dospatas .pata{background:#fff;border:1px solid var(--crema-osc);border-radius:22px;padding:32px 30px;box-shadow:0 4px 24px rgba(14,26,43,.05);transition:transform .2s,box-shadow .2s}
+  .dospatas .pata:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(14,26,43,.10)}
+  .dospatas .ptag{font-family:'Space Grotesk';font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--turquesa-osc);display:inline-flex;align-items:center;gap:8px}
+  .dospatas .pata.b .ptag{color:#8A6BC4}
+  .dospatas .pata h3{font-family:'Space Grotesk';font-weight:700;font-size:23px;letter-spacing:-.01em;margin:12px 0 6px}
+  .dospatas .pata .lead{color:var(--texto);font-weight:300;font-size:15px;margin-bottom:22px}
+  .dospatas .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .dospatas .chip{font-size:12.5px;color:var(--texto);background:var(--crema);border:1px solid var(--crema-osc);border-radius:100px;padding:6px 13px}
+  .dospatas .flow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .dospatas .node{flex:1;text-align:center;background:var(--crema);border:1px solid var(--crema-osc);border-radius:14px;padding:16px 8px}
+  .dospatas .node .e{font-size:24px}
+  .dospatas .node .l{font-family:'Space Grotesk';font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--gris);margin-top:6px}
+  .dospatas .node.mid{background:var(--tinta);border-color:var(--tinta)}
+  .dospatas .node.mid .l{color:#cfe8e4}
+  .dospatas .arrow{color:var(--turquesa);font-size:20px;font-weight:700;flex:none}
+  .dospatas .conv{display:flex;align-items:center;gap:14px}
+  .dospatas .scatter{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
+  .dospatas .bit{background:var(--crema);border:1px solid var(--crema-osc);border-radius:11px;padding:9px 10px;font-size:11.5px;color:var(--texto);display:flex;align-items:center;gap:7px}
+  .dospatas .bit .d{width:7px;height:7px;border-radius:50%;background:#8A6BC4;flex:none}
+  .dospatas .to{color:#8A6BC4;font-size:22px;font-weight:700;flex:none}
+  .dospatas .source{flex:none;width:118px;background:var(--tinta);border-radius:16px;padding:18px 14px;text-align:center;color:#fff}
+  .dospatas .source .e{font-size:26px}
+  .dospatas .source .l{font-family:'Space Grotesk';font-weight:600;font-size:12px;margin-top:8px;line-height:1.25}
+  .dospatas .source .l b{color:var(--turquesa)}
+  .dospatas .base{text-align:center;margin-top:30px}
+  .dospatas .ribbon{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--crema-osc);border-radius:100px;padding:11px 22px;font-family:'Space Grotesk';font-weight:600;font-size:15px;box-shadow:0 3px 14px rgba(14,26,43,.05)}
+  .dospatas .ribbon .lock{color:var(--turquesa-osc)}
   @media(max-width:900px){.servicios .cards{grid-template-columns:1fr 1fr}}
   @media(max-width:520px){.servicios .cards{grid-template-columns:1fr}}
 
@@ -358,6 +388,49 @@
 </section>
 
 <!-- PILARES -->
+<!-- LAS DOS PATAS -->
+<section class="dospatas pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Qué hace Nexo</span>
+      <h2>Automatiza lo repetitivo. <span class="acc">Ordena lo importante.</span></h2>
+      <p>Dos patas, un mismo principio: la IA propone, tú apruebas, el sistema ejecuta.</p>
+    </div>
+    <div class="duo">
+      <div class="pata a reveal">
+        <span class="ptag">⚙️ Pata A · Automatizar</span>
+        <h3>Que las tareas se hagan solas</h3>
+        <p class="lead">Lo repetitivo deja de comerte horas.</p>
+        <div class="flow">
+          <div class="node"><div class="e">📄</div><div class="l">Tarea</div></div>
+          <span class="arrow">→</span>
+          <div class="node mid"><div class="e">🤖</div><div class="l">IA + tu OK</div></div>
+          <span class="arrow">→</span>
+          <div class="node"><div class="e">✅</div><div class="l">Hecho</div></div>
+        </div>
+        <div class="chips"><span class="chip">Facturación</span><span class="chip">Seguimiento</span><span class="chip">Papeleo</span><span class="chip">Correos</span></div>
+      </div>
+      <div class="pata b reveal">
+        <span class="ptag">🧠 Pata B · Ordenar</span>
+        <h3>Que el saber no viva en la cabeza</h3>
+        <p class="lead">Todo tu conocimiento, en una fuente que responde.</p>
+        <div class="conv">
+          <div class="scatter">
+            <div class="bit"><span class="d"></span>Procesos</div>
+            <div class="bit"><span class="d"></span>Know-how</div>
+            <div class="bit"><span class="d"></span>Clientes</div>
+            <div class="bit"><span class="d"></span>Productos</div>
+          </div>
+          <span class="to">→</span>
+          <div class="source"><div class="e">📚</div><div class="l"><b>Una sola</b><br>fuente de verdad</div></div>
+        </div>
+        <div class="chips"><span class="chip">Onboarding</span><span class="chip">Protocolos</span><span class="chip">Recetas / fichas</span></div>
+      </div>
+    </div>
+    <div class="base reveal"><span class="ribbon"><span class="lock">🔒</span> Sin perder el control — nunca una caja negra</span></div>
+  </div>
+</section>
+
 <section class="pilares pad">
   <div class="wrap">
     <div class="section-head reveal">
